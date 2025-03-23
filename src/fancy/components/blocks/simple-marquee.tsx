@@ -1,4 +1,4 @@
-import { RefObject, useEffect, useRef, useState } from "react"
+import { RefObject, useRef } from "react"
 import {
   motion,
   SpringOptions,
