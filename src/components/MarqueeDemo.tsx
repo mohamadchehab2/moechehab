@@ -53,85 +53,93 @@ export default function SimpleMarqueeDemo() {
   }
 
   return (
-    <div className="flex w-dvw h-dvh relative justify-center items-center flex-col bg-black overflow-auto" ref={(node) => setContainer(node)}>
-      <h1 className="absolute text-center text-4xl sm:text-5xl md:text-6xl top-[10%] sm:top-[15%] md:top-[12%] text-white font-calendas px-4">moechehab</h1>
-      <p className="absolute text-center text-sm sm:text-base md:text-xl top-[17%] sm:top-[25%] md:top-[22%] text-gray-400 font-calendas px-4 max-w-[90%] mx-auto">exploring the boundaries of technology</p>
-      <div className="absolute h-[170%] sm:h-[200%] mt-32 top-0 w-full justify-center items-center flex flex-col space-y-2 sm:space-y-3 md:space-y-4">
-        <SimpleMarquee
-          className="w-full"
-          baseVelocity={8}
-          repeat={4}
-          draggable={false}
-          scrollSpringConfig={{ damping: 50, stiffness: 400 }}
-          slowDownFactor={0.1}
-          slowdownOnHover
-          slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
-          scrollAwareDirection={true}
-          scrollContainer={{ current: container! }}
-          useScrollVelocity={true}
-          direction="left"
-        >
-          {firstThird.map((src, i) => (
-            <MarqueeItem key={i}>
-              <img
-                src={src}
-                alt={`Image ${i + 1}`}
-                className="h-20 w-32 sm:h-24 sm:w-40 md:h-32 md:w-48 object-cover"
-              />
-            </MarqueeItem>
-          ))}
-        </SimpleMarquee>
+    <div className="flex w-full min-h-dvh justify-center items-center flex-col bg-black" ref={(node) => setContainer(node)}>
+      <div className="flex flex-col my-24 items-center px-4 ">
+        <h1 className="text-center text-3xl sm:text-3xl md:text-4xl text-white font-calendas">moechehab</h1>
+        <p className="text-center text-[10px] sm:text-xs md:text-lg text-gray-400 font-calendas mx-auto mt-2">exploring the boundaries of technology</p>
+      </div>
+      <div className="w-full flex flex-col space-y-2 sm:space-y-3 md:space-y-4 overflow-hidden">
+        <div className="w-full overflow-hidden">
+          <SimpleMarquee
+            className="w-full"
+            baseVelocity={8}
+            repeat={4}
+            draggable={false}
+            scrollSpringConfig={{ damping: 50, stiffness: 400 }}
+            slowDownFactor={0.1}
+            slowdownOnHover
+            slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
+            scrollAwareDirection={true}
+            scrollContainer={{ current: container! }}
+            useScrollVelocity={true}
+            direction="left"
+          >
+            {firstThird.map((src, i) => (
+              <MarqueeItem key={i}>
+                <img
+                  src={src}
+                  alt={`Image ${i + 1}`}
+                  className="h-20 w-32 sm:h-24 sm:w-40 md:h-32 md:w-48 object-cover"
+                />
+              </MarqueeItem>
+            ))}
+          </SimpleMarquee>
+        </div>
 
-        <SimpleMarquee
-          className="w-full"
-          baseVelocity={8}
-          repeat={4}
-          scrollAwareDirection={true}
-          scrollSpringConfig={{ damping: 50, stiffness: 400 }}
-          slowdownOnHover
-          slowDownFactor={0.1}
-          slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
-          useScrollVelocity={true}
-          scrollContainer={{ current: container! }}
-          draggable={false}
-          direction="right"
-        >
-          {secondThird.map((src, i) => (
-            <MarqueeItem key={i}>
-              <img
-                src={src}
-                alt={`Image ${i + firstThird.length}`}
-                className="h-20 w-32 sm:h-24 sm:w-40 md:h-32 md:w-48 object-cover"
-              />
-            </MarqueeItem>
-          ))}
-        </SimpleMarquee>
+        <div className="w-full overflow-hidden">
+          <SimpleMarquee
+            className="w-full"
+            baseVelocity={8}
+            repeat={4}
+            scrollAwareDirection={true}
+            scrollSpringConfig={{ damping: 50, stiffness: 400 }}
+            slowdownOnHover
+            slowDownFactor={0.1}
+            slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
+            useScrollVelocity={true}
+            scrollContainer={{ current: container! }}
+            draggable={false}
+            direction="right"
+          >
+            {secondThird.map((src, i) => (
+              <MarqueeItem key={i}>
+                <img
+                  src={src}
+                  alt={`Image ${i + firstThird.length}`}
+                  className="h-20 w-32 sm:h-24 sm:w-40 md:h-32 md:w-48 object-cover"
+                />
+              </MarqueeItem>
+            ))}
+          </SimpleMarquee>
+        </div>
 
-        <SimpleMarquee
-          className="w-full"
-          baseVelocity={8}
-          repeat={4}
-          draggable={false}
-          scrollSpringConfig={{ damping: 50, stiffness: 400 }}
-          slowDownFactor={0.1}
-          slowdownOnHover
-          slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
-          scrollAwareDirection={true}
-          scrollContainer={{ current: container! }}
-          useScrollVelocity={true}
-          direction="left"
-        >
-          {lastThird.map((src, i) => (
-            <MarqueeItem key={i}>
-              <img
-                src={src}
-                alt={`Image ${i + firstThird.length + secondThird.length}`}
-                className="h-20 w-32 sm:h-24 sm:w-40 md:h-32 md:w-48 object-cover"
-              />
-            </MarqueeItem>
-          ))}
-        </SimpleMarquee>
-        <div className="flex flex-col gap-8 w-full mt-12 px-8">
+        <div className="w-full overflow-hidden">
+          <SimpleMarquee
+            className="w-full"
+            baseVelocity={8}
+            repeat={4}
+            draggable={false}
+            scrollSpringConfig={{ damping: 50, stiffness: 400 }}
+            slowDownFactor={0.1}
+            slowdownOnHover
+            slowDownSpringConfig={{ damping: 60, stiffness: 300 }}
+            scrollAwareDirection={true}
+            scrollContainer={{ current: container! }}
+            useScrollVelocity={true}
+            direction="left"
+          >
+            {lastThird.map((src, i) => (
+              <MarqueeItem key={i}>
+                <img
+                  src={src}
+                  alt={`Image ${i + firstThird.length + secondThird.length}`}
+                  className="h-20 w-32 sm:h-24 sm:w-40 md:h-32 md:w-48 object-cover"
+                />
+              </MarqueeItem>
+            ))}
+          </SimpleMarquee>
+        </div>
+        <div className="flex flex-col gap-8 w-full mt-12 px-8 bg-black">
             <h1 className="text-2xl text-white font-semibold font-calendas">Experience</h1>
             <div className="text-left">
                 <div className="font-medium text-white font-calendas ">Alpine ITW, 2024</div>
@@ -150,7 +158,7 @@ export default function SimpleMarqueeDemo() {
             </div>
 
         </div>
-        <div className="w-full max-w-md mx-auto mt-16 px-8">
+        <div className="w-full max-w-md mx-auto my-24 px-8">
       <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm">
         <h3 className="font-semibold text-xl text-white mb-3 font-calendas">Join the Newsletter</h3>
         <p className="text-sm text-muted-foreground mb-6">Stay updated with my latest projects and tech insights.</p>
