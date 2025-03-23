@@ -55,8 +55,8 @@ export default function SimpleMarqueeDemo() {
   return (
     <div className="flex w-full min-h-dvh justify-center items-center flex-col bg-black" ref={(node) => setContainer(node)}>
       <div className="flex flex-col my-24 items-center px-4 ">
-        <h1 className="text-center text-3xl sm:text-3xl md:text-4xl text-white font-calendas">moechehab</h1>
-        <p className="text-center text-[10px] sm:text-xs md:text-lg text-gray-400 font-calendas mx-auto mt-2">exploring the boundaries of technology</p>
+        <h1 className="text-center text-4xl sm:text-3xl md:text-4xl text-white font-calendas">moechehab</h1>
+        <p className="text-center text-sm sm:text-xs md:text-lg text-gray-400 font-calendas mx-auto mt-2">exploring the boundaries of technology</p>
       </div>
       <div className="w-full flex flex-col space-y-2 sm:space-y-3 md:space-y-4 overflow-hidden">
         <div className="w-full overflow-hidden">
