@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { toast } from "sonner"
 
 import SimpleMarquee from "@/fancy/components/blocks/simple-marquee"
-import { subscribeToNewsletter, submitContactInquiry } from "@/app/actions"
+import { submitContactInquiry } from "@/app/actions"
 
 const exampleImages = [
   "https://cdn.cosmos.so/4b771c5c-d1eb-4948-b839-255dbeb931ba?format=jpeg",
