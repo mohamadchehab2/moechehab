@@ -33,41 +33,8 @@ export default function SimpleMarqueeDemo() {
   const lastThird = exampleImages.slice(Math.floor(2 * exampleImages.length / 3))
 
   const [container, setContainer] = useState<HTMLElement | null>(null)
-  const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [name, setName] = useState("")
-  const [message, setMessage] = useState("")
-  const [isContactLoading, setIsContactLoading] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsLoading(true)
-    
-    const result = await subscribeToNewsletter(email)
-    
-    if (result.success) {
-      toast.success("Successfully subscribed to the newsletter!")
-      setEmail("")
-    } else {
-      toast.error(result.error || "Failed to subscribe to newsletter")
-    }
-    
-    setIsLoading(false)
-  }
-
-  const handleContactSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsContactLoading(true)
-    
-    // Simulate sending contact form
-    await new Promise(resolve => setTimeout(resolve, 1000))
-    
-    toast.success("Message sent successfully!")
-    setName("")
-    setEmail("")
-    setMessage("")
-    setIsContactLoading(false)
-  }
+  
 
   return (
     <div className="flex w-full min-h-dvh justify-center items-center flex-col bg-black" ref={(node) => setContainer(node)}>
