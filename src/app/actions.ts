@@ -1,5 +1,7 @@
 'use server'
 
+import { supabase } from '../lib/supabase'
+
 export async function subscribeToNewsletter(email: string) {
   try {
     const response = await fetch('https://api.beehiiv.com/v2/publications/pub_0c836aa9-d3e6-423f-89a0-905f0f7ac9e0/subscriptions', {
@@ -34,5 +36,30 @@ export async function subscribeToNewsletter(email: string) {
       success: false, 
       error: error instanceof Error ? error.message : 'Failed to subscribe to newsletter'
     }
+  }
+}
+
+export async function submitContactInquiry(data: {
+  name: string
+  email: string
+  inquiry: string
+}) {
+  try {
+    const { error } = await supabase
+      .from('contact')
+      .insert([
+        {
+          name: data.name,
+          email: data.email,
+          inquiry: data.inquiry,
+        },
+      ])
+
+    if (error) throw error
+
+    return { success: true }
+  } catch (error) {
+    console.error('Contact form submission error:', error)
+    return { success: false, error: 'Failed to submit inquiry' }
   }
 }

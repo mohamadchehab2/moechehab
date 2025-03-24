@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import { toast } from "sonner"
 
 import SimpleMarquee from "@/fancy/components/blocks/simple-marquee"
-import { subscribeToNewsletter } from "@/app/actions"
+import { subscribeToNewsletter, submitContactInquiry } from "@/app/actions"
 
 const exampleImages = [
   "https://cdn.cosmos.so/4b771c5c-d1eb-4948-b839-255dbeb931ba?format=jpeg",
@@ -35,6 +35,9 @@ export default function SimpleMarqueeDemo() {
   const [container, setContainer] = useState<HTMLElement | null>(null)
   const [email, setEmail] = useState("")
   const [isLoading, setIsLoading] = useState(false)
+  const [name, setName] = useState("")
+  const [message, setMessage] = useState("")
+  const [isContactLoading, setIsContactLoading] = useState(false)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -50,6 +53,20 @@ export default function SimpleMarqueeDemo() {
     }
     
     setIsLoading(false)
+  }
+
+  const handleContactSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsContactLoading(true)
+    
+    // Simulate sending contact form
+    await new Promise(resolve => setTimeout(resolve, 1000))
+    
+    toast.success("Message sent successfully!")
+    setName("")
+    setEmail("")
+    setMessage("")
+    setIsContactLoading(false)
   }
 
   return (
@@ -139,6 +156,8 @@ export default function SimpleMarqueeDemo() {
             ))}
           </SimpleMarquee>
         </div>
+   
+  
         <div className="flex flex-col gap-8 w-full mt-12 px-8 bg-black">
             <h1 className="text-2xl text-white font-semibold font-calendas">Experience</h1>
             <div className="text-left">
@@ -158,32 +177,65 @@ export default function SimpleMarqueeDemo() {
             </div>
 
         </div>
-        <div className="w-full max-w-md mx-auto my-24 px-8">
-      <div className="rounded-lg border border-zinc-800 bg-zinc-900/50 p-8 backdrop-blur-sm">
-        <h3 className="font-semibold text-xl text-white mb-3 font-calendas">Join the Newsletter</h3>
-        <p className="text-sm text-muted-foreground mb-6">Stay updated with my latest projects and tech insights.</p>
-        
-        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <div className="flex gap-3">
-            <input 
-              type="email" 
-              placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="flex h-11 w-full rounded-md border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-colors"
-            />
-            <button 
-              type="submit"
-              disabled={isLoading}
-              className="shrink-0 inline-flex h-11 items-center justify-center rounded-md bg-white px-6 text-sm font-medium text-zinc-900 hover:bg-zinc-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {isLoading ? "Subscribing..." : "Subscribe"}
-            </button>
+
+        <div className="flex flex-col gap-8 w-full mt-12 px-8 bg-black my-12">
+      
+            <h3 className="text-2xl text-white font-semibold font-calendas">Contact Me</h3>
+
+            
+            <form onSubmit={async (e) => {
+              e.preventDefault()
+              const formData = new FormData(e.currentTarget)
+              const data = {
+                name: formData.get('name') as string,
+                email: formData.get('email') as string,
+                inquiry: formData.get('inquiry') as string,
+              }
+              
+              setIsLoading(true)
+              const result = await submitContactInquiry(data)
+              setIsLoading(false)
+              
+              if (result.success) {
+                toast.success("Thanks for reaching out! I'll get back to you soon.")
+                e.currentTarget.reset()
+              } else {
+                toast.error(result.error || "Failed to submit inquiry")
+              }
+            }} className="flex flex-col gap-4">
+              <input 
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+                className="flex h-11 w-full rounded-md border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-colors"
+              />
+              <input 
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+                className="flex h-11 w-full rounded-md border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-colors"
+              />
+              <textarea 
+                name="inquiry"
+                placeholder="Your message"
+                required
+                rows={4}
+                className="flex w-full rounded-md border border-zinc-800 bg-zinc-900/50 px-4 py-2 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-700 focus:outline-none focus:ring-1 focus:ring-zinc-700 transition-colors"
+              />
+              <button 
+                type="submit"
+                disabled={isLoading}
+                className="shrink-0 inline-flex h-11 items-center justify-center rounded-md bg-white px-6 text-sm font-medium text-zinc-900 hover:bg-zinc-100 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isLoading ? "Sending..." : "Send Message"}
+              </button>
+            </form>
           </div>
-        </form>
-      </div>
-    </div>
+        
+        
+ 
       </div>
   
     </div>

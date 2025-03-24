@@ -1,7 +1,8 @@
 import SimpleMarqueeDemo from "@/components/MarqueeDemo";
 export default function Home() {
   return (
-    <div className="">
+    <div className="bg-black">
+     
       <SimpleMarqueeDemo />
     </div>
   );
