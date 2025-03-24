@@ -178,7 +178,7 @@ export default function SimpleMarqueeDemo() {
 
         </div>
 
-        <div className="flex flex-col gap-8 w-full mt-12 px-8 bg-black my-12">
+        <div className="flex flex-col gap-8 w-full md:w-[400px] mx-auto mt-12 px-8 bg-black my-12">
       
             <h3 className="text-2xl text-white font-semibold font-calendas">Contact Me</h3>
 
