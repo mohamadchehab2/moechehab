@@ -145,9 +145,15 @@ export default function SimpleMarqueeDemo() {
 
         </div>
 
+        
         <div className="flex flex-col gap-8 w-full md:w-[400px] mx-auto mt-12 px-8 bg-black my-12">
-      
-            <h3 className="text-2xl text-white font-semibold font-calendas">Contact Me</h3>
+      <div>
+      <h3 className="text-2xl text-white font-semibold font-calendas">Contact Me</h3>
+            <p className="text-sm text-muted-foreground mt-1">
+              Feel free to reach out if you have any questions or just want to chat about technology, engineering, or anything else!
+            </p>
+      </div>
+       
 
             
             <form onSubmit={async (e) => {
@@ -204,7 +210,21 @@ export default function SimpleMarqueeDemo() {
         
  
       </div>
-  
+      
+      <div>
+      <div className="flex flex-row gap-4 mb-12">
+    <a href="https://github.com/mohamadchehab" target="_blank" rel="noopener noreferrer" className="text-gray-200 hover:text-gray-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-github">
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+      </svg>
+    </a>
+    <a href="https://x.com/moeintechoff" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gray-400">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.6823 10.6218L20.2391 3H18.6854L12.9921 9.61788L8.44486 3H3.2002L10.0765 13.0074L3.2002 21H4.75404L10.7663 14.0113L15.5549 21H20.7996L13.6823 10.6218ZM11.5541 13.0956L10.8574 12.0991L5.31391 4.16971H7.70053L12.1742 10.5689L12.8709 11.5655L18.6861 19.8835H16.2995L11.5541 13.0956Z" />
+      </svg>
+    </a>
+  </div>
+      </div>
     </div>
   )
 }
