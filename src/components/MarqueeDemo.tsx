@@ -133,12 +133,8 @@ export default function SimpleMarqueeDemo() {
             </div>
 
         
-            <div className="text-right">
-                <div className="font-medium text-white">Vently, 2023-2025</div>
-                <p className="mt-2 text-sm text-muted-foreground">Launched a platform for managing events, connecting people across the Bay Area. </p>
-            </div>
 
-            <div className="text-left">
+            <div className="text-right">
                 <div className="font-medium text-white">Interplanetary Space Initiative, 2022-2025</div>
                 <p className="mt-2 text-sm text-muted-foreground ">Created a heatmap to showcase space news articles.</p>
             </div>
