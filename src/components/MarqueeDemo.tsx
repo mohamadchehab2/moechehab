@@ -1,6 +1,9 @@
 'use client'
 import React, { useState } from "react"
 import { toast } from "sonner"
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import Image from "next/image"
 
 import SimpleMarquee from "@/fancy/components/blocks/simple-marquee"
 import { submitContactInquiry } from "@/app/actions"
@@ -23,6 +26,18 @@ const exampleImages = [
   "https://cdn.cosmos.so/bd56ed6d-1bbd-44a4-b1a1-79b7199bbebb?format=jpeg",
 ]
 
+const ventlyImages = [
+  '/Vently1.jpg',
+  '/Vently2.jpg',
+  '/Vently3.jpg'
+]
+
+const interplanetaryImages = [
+  '/Int1.jpeg',
+  '/Int2.jpeg',
+  '/Int3.jpeg'
+]
+
 const MarqueeItem = ({ children }: { children: React.ReactNode }) => (
   <div className="mx-2 sm:mx-3 md:mx-4 hover:scale-105 cursor-pointer duration-300 ease-in-out">{children}</div>
 )
@@ -34,7 +49,27 @@ export default function SimpleMarqueeDemo() {
 
   const [container, setContainer] = useState<HTMLElement | null>(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [isVentlyModalOpen, setIsVentlyModalOpen] = useState(false)
+  const [isInterplanetaryModalOpen, setIsInterplanetaryModalOpen] = useState(false)
+  const [currentVentlyImageIndex, setCurrentVentlyImageIndex] = useState(0)
+  const [currentInterplanetaryImageIndex, setCurrentInterplanetaryImageIndex] = useState(0)
   
+
+  const handleVentlyImageChange = (direction: 'prev' | 'next') => {
+    if (direction === 'prev') {
+      setCurrentVentlyImageIndex((prev) => (prev === 0 ? ventlyImages.length - 1 : prev - 1))
+    } else {
+      setCurrentVentlyImageIndex((prev) => (prev === ventlyImages.length - 1 ? 0 : prev + 1))
+    }
+  }
+
+  const handleInterplanetaryImageChange = (direction: 'prev' | 'next') => {
+    if (direction === 'prev') {
+      setCurrentInterplanetaryImageIndex((prev) => (prev === 0 ? interplanetaryImages.length - 1 : prev - 1))
+    } else {
+      setCurrentInterplanetaryImageIndex((prev) => (prev === interplanetaryImages.length - 1 ? 0 : prev + 1))
+    }
+  }
 
   return (
     <div className="flex w-full min-h-dvh justify-center items-center flex-col bg-black" ref={(node) => setContainer(node)}>
@@ -128,22 +163,36 @@ export default function SimpleMarqueeDemo() {
         <div className="flex flex-col gap-8 w-full mt-12 px-8 bg-black">
             <h1 className="text-2xl text-white font-semibold font-calendas">Experience</h1>
 
+
+
             <div className="text-left">
-                <div className="font-medium text-white font-calendas ">Vently</div>
-                <p className="mt-2 text-sm text-muted-foreground max-w-[300px]  font-calendas">Built a consumer social app in the Bay Area.</p>
-            </div>
-
-
-            <div className="text-right">
                 <div className="font-medium text-white font-calendas ">Alpine ITW, 2024</div>
                 <p className="mt-2 text-sm text-muted-foreground max-w-[300px]  font-calendas">Developed a load case visualization software for structural engineers.</p>
             </div>
 
         
-
             <div className="text-right">
+                <div className="font-medium text-white font-calendas ">Vently, 2023-2025</div>
+                <p className="mt-2 text-sm text-muted-foreground   font-calendas">Built a consumer social app in the Bay Area.</p>
+                <p
+   
+                  className="mt-2 text-white text-sm font-calendas hover:underline hover:text-gray-400 cursor-pointer"
+                  onClick={() => setIsVentlyModalOpen(true)}
+                >
+                  View Pictures
+                </p>
+            </div>
+
+            <div className="text-left">
                 <div className="font-medium text-white">Interplanetary Space Initiative, 2022-2025</div>
                 <p className="mt-2 text-sm text-muted-foreground ">Created a heatmap to showcase space news articles.</p>
+                <p
+   
+   className="mt-2 text-white text-sm font-calendas hover:underline hover:text-gray-400 cursor-pointer"
+   onClick={() => setIsInterplanetaryModalOpen(true)}
+ >
+   View Pictures
+ </p>
             </div>
 
         </div>
@@ -228,6 +277,114 @@ export default function SimpleMarqueeDemo() {
     </a>
   </div>
       </div>
+
+      <Dialog open={isVentlyModalOpen} onOpenChange={setIsVentlyModalOpen}>
+        <DialogContent className="bg-black">
+          <DialogHeader className=" flex flex-row items-center justify-between">
+            <DialogTitle className="text-white">Vently</DialogTitle>
+            <DialogClose>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </DialogClose>
+          </DialogHeader>
+          <Tabs defaultValue="images" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 rounded-md bg-zinc-900/50 p-1">
+              <TabsTrigger value="images" className="text-default text-sm">Images</TabsTrigger>
+              <TabsTrigger value="responsibilities" className="text-default text-sm">Responsibilities</TabsTrigger>
+            </TabsList>
+            <TabsContent value="images" className="space-y-4">
+              <div className="relative w-full h-[250px]">
+                <Image
+                  src={ventlyImages[currentVentlyImageIndex]}
+                  alt={`Vently Image ${currentVentlyImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                />
+                <div className="absolute inset-0 flex items-center justify-between">
+                  <button
+                    className="absolute left-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                    onClick={() => handleVentlyImageChange('prev')}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <button
+                    className="absolute right-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                    onClick={() => handleVentlyImageChange('next')}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="responsibilities" className="space-y-4">
+              <ul className="list-disc text-white ml-4 font-calendas">
+                <li className="mt-2">Implemented a full-stack web platform using React.js, Tailwind CSS, and developed a custom client library using Node.js that reduced API integration time and improved code reusability across components</li>
+                <li className="mt-2">Designed and deployed a highly scalable microservices architecture on AWS leveraging ECS, ECR, API Gateway, and Cloudmap, achieving consistent uptime and supporting 10,000+ concurrent users</li>
+                <li className="mt-2">Delivered 50,000 lines of production-quality code in under 2 months, enabling successful platform launch with initial user adoption</li>
+              </ul>
+            </TabsContent>
+          </Tabs>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isInterplanetaryModalOpen} onOpenChange={setIsInterplanetaryModalOpen}>
+      <DialogContent className="bg-black">
+          <DialogHeader className=" flex flex-row items-center justify-between">
+            <DialogTitle className="text-white">Interplanetary Space Initiative</DialogTitle>
+            <DialogClose>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </DialogClose>
+          </DialogHeader>
+          <Tabs defaultValue="images" className="w-full">
+            <TabsList className="grid w-full grid-cols-2 rounded-md bg-zinc-900/50 p-1">
+              <TabsTrigger value="images" className="text-default text-sm">Images</TabsTrigger>
+              <TabsTrigger value="responsibilities" className="text-default text-sm">Responsibilities</TabsTrigger>
+            </TabsList>
+            <TabsContent value="images" className="space-y-4">
+              <div className="relative w-full h-[250px]">
+                <Image
+                  src={interplanetaryImages[currentInterplanetaryImageIndex]}
+                  alt={`Interplanetary Image ${currentInterplanetaryImageIndex + 1}`}
+                  fill
+                  className="object-contain"
+                />
+                <div className="absolute inset-0 flex items-center justify-between">
+                  <button
+                    className="absolute left-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                    onClick={() => handleInterplanetaryImageChange('prev')}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M15 18l-6-6 6-6" />
+                    </svg>
+                  </button>
+                  <button
+                    className="absolute right-4 p-2 rounded-full bg-black/50 hover:bg-black/70 text-white"
+                    onClick={() => handleInterplanetaryImageChange('next')}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 18l6-6-6-6" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </TabsContent>
+            <TabsContent value="responsibilities" className="space-y-4">
+              <ul className="list-disc text-white ml-4 font-calendas">
+                <li className="mt-2">Writing frontend in React.js and Leaflet.js for a marker-based Space Heatmap dashboard showing space news articles that are extracted daily from NASA, New Scientist, European Space Agency</li>
+                <li className="mt-2">Developing backend using Express and Node.js to fetch more than 10,000 articles from an in-house AWS-hosted MySQL database including title, summary, keywords, locations, media</li>
+                <li className="mt-2">Compiling of scripts in Python using various libraries to update the MySQL database with article data daily</li>
+              </ul>
+            </TabsContent>
+          </Tabs>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
