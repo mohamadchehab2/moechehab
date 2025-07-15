@@ -127,7 +127,14 @@ export default function SimpleMarqueeDemo() {
   
         <div className="flex flex-col gap-8 w-full mt-12 px-8 bg-black">
             <h1 className="text-2xl text-white font-semibold font-calendas">Experience</h1>
+
             <div className="text-left">
+                <div className="font-medium text-white font-calendas ">Vently</div>
+                <p className="mt-2 text-sm text-muted-foreground max-w-[300px]  font-calendas">Built a consumer social app in the Bay Area.</p>
+            </div>
+
+
+            <div className="text-right">
                 <div className="font-medium text-white font-calendas ">Alpine ITW, 2024</div>
                 <p className="mt-2 text-sm text-muted-foreground max-w-[300px]  font-calendas">Developed a load case visualization software for structural engineers.</p>
             </div>
