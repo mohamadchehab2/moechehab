@@ -323,9 +323,9 @@ export default function SimpleMarqueeDemo() {
             </TabsContent>
             <TabsContent value="responsibilities" className="space-y-4">
               <ul className="list-disc text-white ml-4 font-calendas">
-                <li className="mt-2">Implemented a full-stack web platform using React.js, Tailwind CSS, and developed a custom client library using Node.js that reduced API integration time and improved code reusability across components</li>
-                <li className="mt-2">Designed and deployed a highly scalable microservices architecture on AWS leveraging ECS, ECR, API Gateway, and Cloudmap, achieving consistent uptime and supporting 10,000+ concurrent users</li>
-                <li className="mt-2">Delivered 50,000 lines of production-quality code in under 2 months, enabling successful platform launch with initial user adoption</li>
+                <li className="mt-2 font-calendas">Implemented a full-stack web platform using React.js, Tailwind CSS, and developed a custom client library using Node.js that reduced API integration time and improved code reusability across components</li>
+                <li className="mt-2 font-calendas">Designed and deployed a highly scalable microservices architecture on AWS leveraging ECS, ECR, API Gateway, and Cloudmap, achieving consistent uptime and supporting 10,000+ concurrent users</li>
+                <li className="mt-2 font-calendas">Delivered 50,000 lines of production-quality code in under 2 months, enabling successful platform launch with initial user adoption</li>
               </ul>
             </TabsContent>
           </Tabs>
@@ -377,9 +377,9 @@ export default function SimpleMarqueeDemo() {
             </TabsContent>
             <TabsContent value="responsibilities" className="space-y-4">
               <ul className="list-disc text-white ml-4 font-calendas">
-                <li className="mt-2">Writing frontend in React.js and Leaflet.js for a marker-based Space Heatmap dashboard showing space news articles that are extracted daily from NASA, New Scientist, European Space Agency</li>
-                <li className="mt-2">Developing backend using Express and Node.js to fetch more than 10,000 articles from an in-house AWS-hosted MySQL database including title, summary, keywords, locations, media</li>
-                <li className="mt-2">Compiling of scripts in Python using various libraries to update the MySQL database with article data daily</li>
+                <li className="mt-2 font-calendas">Writing frontend in React.js and Leaflet.js for a marker-based Space Heatmap dashboard showing space news articles that are extracted daily from NASA, New Scientist, European Space Agency</li>
+                <li className="mt-2 font-calendas">Developing backend using Express and Node.js to fetch more than 10,000 articles from an in-house AWS-hosted MySQL database including title, summary, keywords, locations, media</li>
+                <li className="mt-2 font-calendas">Compiling of scripts in Python using various libraries to update the MySQL database with article data daily</li>
               </ul>
             </TabsContent>
           </Tabs>
